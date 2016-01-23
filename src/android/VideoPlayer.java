@@ -10,6 +10,10 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
 import android.media.MediaPlayer.OnPreparedListener;
+//k
+import android.content.Context;
+import android.widget.MediaController;
+
 import android.net.Uri;
 import android.os.Build;
 import android.util.Log;
@@ -42,6 +46,9 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private VideoView videoView;
 
     private MediaPlayer player;
+
+    //K
+    private MediaController mediaController;
 
     /**
      * Executes the request and returns PluginResult.
@@ -139,6 +146,17 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
         videoView = new VideoView(cordova.getActivity());
         videoView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+
+
+        //K
+        mediaController = new MediaController(cordova.getActivity(), false);
+        mediaController.setAnchorView(videoView);
+        mediaController.setMediaPlayer(videoView);
+        videoView.setMediaController(mediaController);
+        mediaController.setEnabled(true);
+        mediaController.show();
+        videoView.requestFocus();
+
         // videoView.setVideoURI(uri);
         // videoView.setVideoPath(path);
         main.addView(videoView);
