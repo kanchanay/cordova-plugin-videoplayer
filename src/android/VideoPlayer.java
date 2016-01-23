@@ -10,7 +10,6 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.media.MediaPlayer.OnErrorListener;
 import android.media.MediaPlayer.OnPreparedListener;
-
 //k
 import android.content.Context;
 import android.widget.MediaController;
@@ -82,11 +81,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             // Create dialog in new thread
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
-                    //openVideoDialog(path, options);
-                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
-                    Uri data = Uri.parse(UriLink);
-                    intent.setDataAndType(data, "video/*");
-                    startActivity(intent);
+                    openVideoDialog(path, options);
                 }
             });
 
