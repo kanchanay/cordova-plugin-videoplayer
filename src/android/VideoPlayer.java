@@ -81,7 +81,10 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             // Create dialog in new thread
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
-                    openVideoDialog(path, options);
+                  Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+                  intent.setDataAndType(targetUri, "video/*");
+                  startActivity(intent);
+                    //openVideoDialog(path, options);
                 }
             });
 
